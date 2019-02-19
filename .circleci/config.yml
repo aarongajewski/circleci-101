@@ -3,7 +3,7 @@ jobs:
   delivery:
     machine: true 
     steps:
-    - checkoutt
+    - checkout
     - run:
         command: chef gem install dnsimple
     - run:

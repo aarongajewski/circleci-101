@@ -6,7 +6,6 @@ jobs:
     steps:
     - checkout
     - run:
-        name: Add dnsimple gem
         command: chef gem install dnsimple
     - run:
         command: delivery local all

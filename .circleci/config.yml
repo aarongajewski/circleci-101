@@ -20,6 +20,5 @@ workflows:
   build_and_test:
     jobs:
       - hello-build/hello-build
-          parameters:
-            to: Aaron
+          to: aaron
       

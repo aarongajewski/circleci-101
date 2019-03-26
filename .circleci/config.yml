@@ -5,7 +5,8 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - howdy/hello-build   
+      - howdy/hello-build:
+        to: aaron
 
           
 # workflows:

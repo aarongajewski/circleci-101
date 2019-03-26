@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  hello-build: circleci/hello-build@0.0.10
+  howdy: circleci/hello-build@0.0.10
 jobs:
   build: 
     docker:
@@ -19,6 +19,6 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - hello-build/hello-build:
+      - howdy/hello-build:
           to: aaron
       

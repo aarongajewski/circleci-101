@@ -4,8 +4,5 @@ orbs:
 workflows:
     build-test-deploy:
       jobs:
-        - howdy/hello-build:
-            filters:
-              branches:
-                only: master      
+        - howdy/hello-build:    
             to: Viji

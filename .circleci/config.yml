@@ -1,24 +1,11 @@
 version: 2.1
 orbs:
-  howdy: circleci/hello-build@0.0.10
-jobs:
-  build: 
-    docker:
-      - image: circleci/node:11.10.1-browsers 
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run: echo "This is where we build..."
-  test:
-    docker:
-      - image: circleci/node:11.10.1-browsers 
-    steps:
-      - checkout
-      - run: echo "This is where we test"
+  howdy: circleci/hello-build@0.0.7 # uses the circleci/buildpack-deps Docker image
 workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - howdy/hello-build:
-          to: aaron
-      
+    build-test-deploy:
+      jobs:
+        - howdy/hello-build:
+            filters:
+              branches:
+                only: master      
+            to: Viji

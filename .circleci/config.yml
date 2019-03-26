@@ -6,7 +6,7 @@ workflows:
   build-test-deploy:
     jobs:
       - howdy/hello-build:    
-          to: Viji
+
           
 # workflows:
 #   version: 2

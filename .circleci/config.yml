@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  howdy: circleci/hello-build@0.0.9 # uses the circleci/buildpack-deps Docker image
+  howdy: circleci/hello-build@0.0.10 # uses the circleci/buildpack-deps Docker image
 workflows:
   version: 2
   build-test-deploy:

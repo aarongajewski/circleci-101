@@ -10,8 +10,7 @@ jobs:
       - checkout
       - run: echo "This is where we build..."
   test:
-    docker:
-      - image: circleci/node:11.10.1-browsers 
+    machine: true
     steps:
       - checkout
       - run: echo "This is where we test"
@@ -21,4 +20,5 @@ workflows:
     jobs:
       - howdy/hello-build:
           to: aaron
+      - test
       

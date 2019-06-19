@@ -1,27 +1,35 @@
-version: 2.1
-orbs:
-  howdy: circleci/hello-build@0.0.10
+version: 2
 jobs:
-  build: 
+  build:
     docker:
-      - image: circleci/node:11.10.1-browsers 
+    - image: docker.fwsas.com/build-base-image/c-build:1.0
+      auth:
+        username: ${USERNAME}
+        password: ${PASSWORD}
     steps:
-      - setup_remote_docker
-      - checkout
-      - run: echo "This is where we build...??"
-  test:
+    - checkout
+  Run make:
     docker:
-      - image: circleci/node:11.10.1-browsers
+    - image: docker.fwsas.com/build-base-image/c-build:1.0
     steps:
-      - checkout
-      - run: echo "This is where we test"
-      - run: echo ${USERNAME}
+    - run: null
+      name: Creating Build Files & Binary Files
+      command: |
+        make clean
+        make
+  Testing:
+    docker:
+    - image: docker.fwsas.com/build-base-image/c-build:1.0
+    steps:
+    - run:
+        name: Run App
+        command: ./bin/mainapp
+
 workflows:
   version: 2
-  build_and_test:
+  workflow:
     jobs:
-      - howdy/hello-build:
-          to: aaron
-      - test:
-          context: fw-test
-      
+      - build:
+          context: security-group
+      - Run make
+      - Testing

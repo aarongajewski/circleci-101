@@ -22,6 +22,6 @@ workflows:
     jobs:
       - howdy/hello-build:
           to: aaron
-      - test
+      - test:
           context: fw-test
       

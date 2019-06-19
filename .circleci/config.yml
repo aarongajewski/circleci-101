@@ -8,7 +8,7 @@ jobs:
           password: ${PASSWORD}
     steps:
       - checkout
-  test:
+  Run make:
     docker:
       - image: docker.fwsas.com/build-base-image/c-build:1.0
     steps:
@@ -17,7 +17,7 @@ jobs:
         command: |
           make clean
           make
-  deploy:
+  Testing:
     docker:
       - image: docker.fwsas.com/build-base-image/c-build:1.0
     steps:
@@ -31,5 +31,5 @@ workflows:
     jobs:
       - build:
           context: security-group
-      - test
-      - deploy
+      - Run make
+      - Testing

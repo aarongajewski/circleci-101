@@ -8,15 +8,15 @@ jobs:
           password: ${PASSWORD}
     steps:
       - checkout
-  run-make:
+  Run make:
     docker:
       - image: docker.fwsas.com/build-base-image/c-build:1.0
     steps:
-      - run: null
-        name: Creating Build Files & Binary Files
-        command: |
-          make clean
-          make
+      - run: 
+          name: Creating Build Files & Binary Files
+          command: |
+            make clean
+            make
   Testing:
     docker:
       - image: docker.fwsas.com/build-base-image/c-build:1.0
@@ -31,6 +31,7 @@ workflows:
     jobs:
       - build:
           context: security-group
-      - run-make
+      - Run make
       - Testing
+
 

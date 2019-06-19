@@ -2,28 +2,28 @@ version: 2
 jobs:
   build:
     docker:
-    - image: docker.fwsas.com/build-base-image/c-build:1.0
-      auth:
-        username: ${USERNAME}
-        password: ${PASSWORD}
+      - image: docker.fwsas.com/build-base-image/c-build:1.0
+        auth:
+          username: ${USERNAME}
+          password: ${PASSWORD}
     steps:
-    - checkout
-  Run make:
+      - checkout
+  test:
     docker:
-    - image: docker.fwsas.com/build-base-image/c-build:1.0
+      - image: docker.fwsas.com/build-base-image/c-build:1.0
     steps:
-    - run: null
-      name: Creating Build Files & Binary Files
-      command: |
-        make clean
-        make
-  Testing:
+      - run: null
+        name: Creating Build Files & Binary Files
+        command: |
+          make clean
+          make
+  deploy:
     docker:
-    - image: docker.fwsas.com/build-base-image/c-build:1.0
+      - image: docker.fwsas.com/build-base-image/c-build:1.0
     steps:
-    - run:
-        name: Run App
-        command: ./bin/mainapp
+      - run:
+          name: Run App
+          command: ./bin/mainapp
 
 workflows:
   version: 2
@@ -31,5 +31,5 @@ workflows:
     jobs:
       - build:
           context: security-group
-      - Run make
-      - Testing
+      - test
+      - deploy

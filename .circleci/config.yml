@@ -1,24 +1,39 @@
 version: 2.1
-orbs:
-  howdy: circleci/hello-build@0.0.10
 jobs:
-  build: 
+  ami-job1: 
     docker:
       - image: circleci/node:11.10.1-browsers 
     steps:
-      - setup_remote_docker
       - checkout
-      - run: echo "This is where we build...??"
-  test:
-    machine: true
+      - run: echo "This is ami-job1"
+  ami-job2:
+    docker:
+      - image: circleci/node:11.10.1-browsers
     steps:
       - checkout
-      - run: echo "This is where we test"
+      - run: echo "This is ami-job2"
+  main-job1:
+    docker:
+      - image: circleci/node:11.10.1-browsers
+    steps:
+      - checkout
+      - run: echo "This is main-job1"   
+      
 workflows:
   version: 2
-  build_and_test:
+  ami:
     jobs:
-      - howdy/hello-build:
-          to: aaron
-      - test
+      - ami-job1:
+          filters:
+            tags:
+              only: /^AMI.*/
+      - ami-job2:
+          filters:
+            tags:
+              only: /^AMI.*/
+          requires:
+            - ami-job1
+  main:
+    jobs:
+      - main-job1
       

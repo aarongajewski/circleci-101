@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run: echo "This is ami-job1"
       - run:
-          command: echo "Background job 1"
+          command: sleep 10
           background: true
       - run:
           command: echo "Background job 2"

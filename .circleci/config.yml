@@ -6,9 +6,9 @@ jobs:
     steps:
       - checkout
       - run: |
+           sleep 15 &
            sleep 10 &
-           echo "This is command 2" &
-           echo "This is command 3"
+           sleep 5
   ami-job2:
     docker:
       - image: circleci/node:11.10.1-browsers

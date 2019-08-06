@@ -6,6 +6,14 @@ jobs:
     steps:
       - checkout
       - run: echo "This is ami-job1"
+      - run:
+          command: sleep 15
+          background: true
+      - run:
+          command: sleep 10
+          background: true
+      - run:
+          command: sleep 5
   ami-job2:
     docker:
       - image: circleci/node:11.10.1-browsers
@@ -23,21 +31,6 @@ workflows:
   version: 2
   ami:
     jobs:
-      - ami-job1:
-          filters:
-            branches:
-              ignore: /.*/          
-            tags:
-              only: /^AMI.*/
-      - ami-job2:
-          filters:
-            branches:
-              ignore: /.*/          
-            tags:
-              only: /^AMI.*/
-          requires:
-            - ami-job1
-  main:
-    jobs:
-      - main-job1
+      - ami-job1
+
       

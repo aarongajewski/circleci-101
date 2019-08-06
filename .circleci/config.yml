@@ -7,13 +7,13 @@ jobs:
       - checkout
       - run: echo "This is ami-job1"
       - run:
-          command: sleep 15
+          command: echo "Background job 1"
           background: true
       - run:
-          command: sleep 10
+          command: echo "Background job 2"
           background: true
       - run:
-          command: sleep 5
+          command: echo "Background job 3"
   ami-job2:
     docker:
       - image: circleci/node:11.10.1-browsers

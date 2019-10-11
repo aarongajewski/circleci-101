@@ -1,27 +1,11 @@
 version: 2.1
 jobs:
   ami-job1: 
-    docker:
-      - image: circleci/node:11.10.1-browsers 
+    macos:
+      xcode: "10.2.0"
     steps:
       - checkout
-      - run: |
-           sleep 15 &
-           sleep 10 &
-           sleep 5
-  ami-job2:
-    docker:
-      - image: circleci/node:11.10.1-browsers
-    steps:
-      - checkout
-      - run: echo "This is ami-job2"
-  main-job1:
-    docker:
-      - image: circleci/node:11.10.1-browsers
-    steps:
-      - checkout
-      - run: echo "This is main-job1"   
-      
+      - run: system_profiler
 workflows:
   version: 2
   ami:

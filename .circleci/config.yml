@@ -1,43 +1,15 @@
-version: 2.1
 jobs:
-  ami-job1: 
+  build:
     docker:
-      - image: circleci/node:11.10.1-browsers 
+      - image: 'circleci/node:10'
     steps:
-      - checkout
-      - run: echo "This is ami-job1"
-  ami-job2:
-    docker:
-      - image: circleci/node:11.10.1-browsers
-    steps:
-      - checkout
-      - run: echo "This is ami-job2"
-  main-job1:
-    docker:
-      - image: circleci/node:11.10.1-browsers
-    steps:
-      - checkout
-      - run: echo "This is main-job1"   
-      
+      - run: echo "hello"
+orbs:
+  jira: circleci/jira@1.0.5
+version: 2.1
 workflows:
-  version: 2
-  ami:
+  build:
     jobs:
-      - ami-job1:
-          filters:
-            branches:
-              ignore: /.*/          
-            tags:
-              only: /^AMI.*/
-      - ami-job2:
-          filters:
-            branches:
-              ignore: /.*/          
-            tags:
-              only: /^AMI.*/
-          requires:
-            - ami-job1
-  main:
-    jobs:
-      - main-job1
-      
+      - build:
+          post-steps:
+            - jira/notify

@@ -9,7 +9,7 @@ jobs:
       TERM: dumb
       PANTHEON_REPO_DIR: /tmp/pantheon_repo
     steps:
-      - run: echo "hello"
+      - run: echo "hello test"
 orbs:
   jira: circleci/jira@1.0.5
 version: 2.1

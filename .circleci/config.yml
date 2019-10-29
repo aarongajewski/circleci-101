@@ -11,7 +11,7 @@ jobs:
     steps:
       - run: echo "hello"
 orbs:
-  jira: circleci/jira@1.0.6
+  jira: circleci/jira@1.0.4
   jq: circleci/jq@1.9.0
 version: 2.1
 workflows:

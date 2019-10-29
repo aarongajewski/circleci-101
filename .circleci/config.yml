@@ -2,7 +2,7 @@ jobs:
   build:
     docker:
       - image: quay.io/pantheon-public/build-tools-ci:5.x
-      working_directory: ~/sitedir
+    working_directory: ~/sitedir
     environment:
       TZ: /usr/share/zoneinfo/America/Los_Angeles
       BUILD_TOOLS_VERSION: dev-option-for-no-force

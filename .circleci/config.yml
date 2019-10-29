@@ -19,6 +19,7 @@ workflows:
     jobs:
       - build:
           pre-steps:
-            - jq/install   
+            - run:
+                command: rm -f $(command -v jq)
           post-steps:
             - jira/notify

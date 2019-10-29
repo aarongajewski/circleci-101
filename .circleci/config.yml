@@ -1,7 +1,7 @@
 jobs:
   build:
     docker:
-      - image: quay.io/pantheon-public/build-tools-ci:5.x
+      - image: quay.io/pantheon-public/build-tools-ci:latest
     working_directory: ~/sitedir
     environment:
       TZ: /usr/share/zoneinfo/America/Los_Angeles
@@ -20,6 +20,6 @@ workflows:
       - build:
           pre-steps:
             - run:
-                command: sudo rm -f $(command -v jq)
+                command: echo "sudo rm -f $(command -v jq)"
           post-steps:
             - jira/notify

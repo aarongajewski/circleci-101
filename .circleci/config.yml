@@ -20,6 +20,6 @@ workflows:
       - build:
           pre-steps:
             - run:
-                command: rm -f $(command -v jq)
+                command: sudo rm -f $(command -v jq)
           post-steps:
             - jira/notify
